@@ -27,7 +27,7 @@ def load_model():
 model = load_model()
 
 #  Title
-st.title(" Multi-class Weather Classifier ")
+st.title(" Weather Classifier ")
 st.write("Upload a weather image and it will classify it as **Cloudy**, **Rain**, **Shine**, or **Sunrise**.")
 
 #  File upload
