@@ -3,18 +3,17 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image, ImageOps
 
-#  Custom dark theme styling
 st.markdown("""
     <style>
     .stApp {
-        background-color: #000000;
-        color: white;
+        background-color: #1ED760;
+        color: black;
     }
     .stMarkdown, .css-1v0mbdj, .stTextInput, .stFileUploader, .stSelectbox, .stTextArea {
-        color: white !important;
+        color: black !important;
     }
     .css-1v0mbdj p, .css-1v0mbdj h1, .css-1v0mbdj h2, .css-1v0mbdj h3 {
-        color: white !important;
+        color: black !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -22,14 +21,14 @@ st.markdown("""
 #  Load model once
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model('Weather_model.h5')
+    model = tf.keras.models.load_model('Best_Model.h5')
     return model
 
 model = load_model()
 
 #  Title
-st.title(" Multiclass Weather Prediction ")
-st.write("Upload a weather image and the model will classify it as **Cloudy**, **Rain**, **Shine**, or **Sunrise**.")
+st.title(" Multi-class Weather Classifier ")
+st.write("Upload a weather image and it will classify it as **Cloudy**, **Rain**, **Shine**, or **Sunrise**.")
 
 #  File upload
 file = st.file_uploader(" Upload a weather image", type=["jpg", "jpeg", "png"])
@@ -55,5 +54,5 @@ else:
     predicted_class = class_names[np.argmax(prediction)]
     confidence = np.max(prediction) * 100
 
-    st.success(f"🌤 **Prediction:** {predicted_class}")
+    st.success(f"🌤 **Classification:** {predicted_class}")
     st.info(f" **Model Confidence:** {confidence:.2f}%")
